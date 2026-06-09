@@ -35,3 +35,6 @@ archive/
 .infographics-pipeline/
 *-noheader.png
 presentation/infographics/manifests/
+# Philosophische Extra-Infografiken (werden von Hand eingepflegt)
+presentation/infographics/12-werkbank.png
+presentation/infographics/13-spiegel.png

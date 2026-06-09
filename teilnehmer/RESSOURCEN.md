@@ -33,7 +33,8 @@
   https://docs.anthropic.com/en/docs/claude-code/overview
   *CLI, Installation (macOS/Linux/WSL), Konfiguration, MCP-Server, eigene Agents/Skills — die Basis für Stufen 1–8.*
 - **oh-my-claudecode (OMC)** — die Agent-Sammlung für **Stufen 5–8**
-  *Im Workshop vorinstalliert. Beim Selbstbau ins normale `~/.claude` installieren (oh-my-claudecode-Projektseite).*
+  https://omc.vibetip.help/
+  *Im Workshop vorinstalliert. Beim Selbstbau ins normale `~/.claude` installieren.*
 
 ## Azure Networking (die gebaute Architektur)
 

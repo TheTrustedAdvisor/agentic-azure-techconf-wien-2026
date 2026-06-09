@@ -20,5 +20,5 @@ ralph arbeitet den Plan ab, validiert nach jeder Runde und konvergiert — **bes
 Iterations-Limit und Stopp-Bedingung (Definition of Done). Beenden mit
 `/oh-my-claudecode:cancel`.
 
-> Fähigkeitssprung & ehrlicher Abschluss: Autonomie mit Plan, Limit und objektivem Abbruch-
-> kriterium — produktiv genau das Pattern, mit dem solche Architekturen iterativ fertig werden.
+> Fähigkeitssprung: Autonomie mit Plan, Limit und objektivem Abbruchkriterium — produktiv genau
+> das Pattern, mit dem solche Architekturen iterativ fertig werden.

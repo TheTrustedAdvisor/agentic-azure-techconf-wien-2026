@@ -180,6 +180,19 @@ sequenceDiagram
 
 ---
 
+# Das Modell ist ein Spiegel
+
+**Layout:** Bild formatfüllend, 3 Ergänzungszeilen daneben. *(Asset gitignored — vor dem Bauen von Hand einpflegen.)*
+
+**Asset:** infographics/13-spiegel.png
+
+**Auf der Folie (ergänzt das Bild — die Spiegel-Mechanik zeigt das Bild):**
+- Mehr Agenten heilen keine Bestätigungstendenz — **dasselbe Modell spiegelt nur lauter**.
+- Die Gefälligkeit ist kein Fehler, sondern Trainingsziel: nützlich **und** riskant.
+- Deshalb ist der nächste Schritt kein besseres Modell, sondern ein **Kriterium ausserhalb** davon.
+
+---
+
 # Verifizierung — grün/rot statt „sieht gut aus"
 
 **Layout:** Mermaid-Diagramm zentriert/gross, 2 Ergänzungszeilen als Band darunter. Kein Bild-Asset.
@@ -227,6 +240,19 @@ flowchart LR
 **Auf der Folie (ergänzt das Bild — die zwei Phasen zeigt das Bild):**
 - **Planen ist billiger als blindes Tun** — das Ziel wird erst in Schritte + Definition of Done zerlegt.
 - Jede Schleifenrunde **misst gegen die Definition of Done**, statt zu raten.
+
+---
+
+# Erst die Werkbank, dann das Werk
+
+**Layout:** Bild formatfüllend, 3 Ergänzungszeilen daneben. *(Asset gitignored — vor dem Bauen von Hand einpflegen.)*
+
+**Asset:** infographics/12-werkbank.png
+
+**Auf der Folie (ergänzt das Bild — die drei Bewegungen RÜSTEN→PLAN→UMSETZEN zeigt das Bild):**
+- Die teuerste Stufe ist wertlos, wenn das Ziel unscharf ist — **erst die Definition of Done, dann die Methode**.
+- „Welche Werkzeuge?" ist die Stufenfrage; „Was genau?" ist die Qualitätsfrage — **die zweite entscheidet**.
+- Ein scharfes Ziel macht **jede** der acht Stufen besser.
 
 ---
 
