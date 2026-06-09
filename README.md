@@ -31,16 +31,31 @@ Echtes und zeigen die **Reifegrad-Leiter der Methoden**, mit der man dorthin kom
 nur Requirements (business / technical / non-functional) und Parametrisierung (IP-Ranges, Regionen,
 Namens-/Tagging-Konventionen, Fabric-Capacity). Bewusst **lösungsfrei** — die Architektur entsteht im Workshop.
 
+## So fährst du es
+
+```bash
+./setup.sh                      # einmalig: isoliertes Claude-Config + Login
+cd 01-chat && ./run.sh          # dann jede Stufe in ihrem Ordner
+```
+
+Jede Stufe ist ein eigener Ordner mit `run.sh` und allem Kontext (Prompt, MCP-Konfig, Agent).
+Die Architektur entsteht **live**, nichts ist vorgebacken.
+
 ## Struktur
 
 ```
+setup.sh               # einmalig: isoliertes .claude-demo/ (kein Plugin) + Login
 AUSGANGSLAGE.md        # der Input
-01-chat/               # Stufe 1: Prompt + Launch (Claude pur)
-02-mcp/                # Stufe 2: MS-Learn-MCP + Prompt
-03-eigene-agents/      # Stufe 3: handgeschriebene Agent-Definition
-…                      # Stufen 4–8 folgen
-archive/               # frühere Demo-Iteration (Referenz)
+01-chat/               # Stufe 1: Claude pur                    (isoliert)
+02-mcp/                # Stufe 2: + MS-Learn-MCP (.mcp.json)    (isoliert)
+03-eigene-agents/      # Stufe 3: handgeschriebene Agent-Def.   (isoliert)
+04-llm-agents/         # Stufe 4: Agent vom LLM schreiben       (isoliert)
+05-omc-agents/         # Stufe 5: vordefinierte OMC-Agents      (normales Config)
+06-critics/            # Stufe 6: Critic-Iteration              (normales Config)
+07-plan-umsetzung/     # Stufe 7: Plan + IaC + Validierung      (normales Config)
+08-ralplan-ralph/      # Stufe 8: beschränkte Autonomie         (normales Config)
 ```
 
-Jede Stufe enthält das **Setup zum Live-Fahren** (Prompt, Konfig, Agent-Code) — die Architektur
-wird live erzeugt, nicht vorgebacken.
+**Config:** Stufen 1–4 laufen im isolierten `.claude-demo/` (kein Plugin, kein globales MCP —
+sauberer Ausgangspunkt). Ab Stufe 5 nutzt `run.sh` das **normale** Config, damit die
+oh-my-claudecode-Agents/Skills verfügbar sind.
