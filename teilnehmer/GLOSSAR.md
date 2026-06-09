@@ -66,6 +66,8 @@
 
 **CIDR** — Schreibweise für IP-Bereiche (`10.16.0.0/12`). *Warum: **Overlaps** sind ein klassischer, deterministisch prüfbarer Fehler.*
 
+**what-if** — Ein Trockenlauf eines Deployments: zeigt die geplanten Änderungen, **ohne** sie anzuwenden (`az deployment ... what-if`; Terraform-Pendant: `plan`/`validate`). *Warum: das gefahrlose Verb für selbstlaufende Schleifen — `apply` gehört da nicht hin.*
+
 **Landing Zone** — Der standardisierte Enterprise-Rahmen (Netzwerk, Identität, Governance …), auf Hub-Spoke aufgebaut. *Warum: macht aus „ein paar VNets" eine betreibbare Plattform.*
 
 **Zero-Trust** — Kein impliziter Vertrauensraum; privat/least-privilege als Default. *Warum: read-only/privat ist Architektur, kein Nachgedanke.*

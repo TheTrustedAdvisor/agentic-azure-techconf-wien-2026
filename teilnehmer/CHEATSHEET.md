@@ -39,6 +39,7 @@ cd agentic-azure-techconf-wien-2026
 ./setup.sh            # einmal: isoliertes Config + Login
 ```
 Stufen 1–4 laufen plugin-frei isoliert; Stufen 5–8 nutzen das normale Config (OMC-Agents).
+> **Stufen 5–8** setzen voraus, dass **oh-my-claudecode** im normalen `~/.claude` installiert ist, und verbrauchen spürbar mehr API-Tokens (Multi-Agent/Schleifen) — bei knappem Budget reicht eine Iteration.
 > **Windows:** vorher WSL2 (`wsl --install`), dann alles *innerhalb* von Ubuntu/WSL und ins Linux-Home klonen. Details: [`DEMO-ANLEITUNG.md`](DEMO-ANLEITUNG.md).
 
 ## Mehr in diesem Ordner

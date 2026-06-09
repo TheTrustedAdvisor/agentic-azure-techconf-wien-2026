@@ -34,8 +34,9 @@ Erwartetes Verhalten — die Agent-Definition ist **absichtlich vage**. Die Lekt
 ## Stufen 5–8 (normales Config, OMC-Agents)
 
 **Ab Stufe 5: „Agent/Skill nicht gefunden"**
-Diese Stufen brauchen das **normale** Claude-Config mit Plugin — `run.sh` schaltet automatisch um.
-Wenn du manuell startest: nicht im isolierten `.claude-demo/` laufen lassen.
+Diese Stufen brauchen das **normale** Claude-Config mit installiertem **oh-my-claudecode (OMC)**.
+`run.sh` setzt ab Stufe 5 bewusst **kein** `CLAUDE_CONFIG_DIR` — es nutzt also `~/.claude`, **installiert aber nichts**.
+Fix: OMC im normalen `~/.claude` installieren (siehe [DEMO-ANLEITUNG.md](DEMO-ANLEITUNG.md) → Voraussetzungen) und nicht im isolierten `.claude-demo/` laufen lassen.
 
 **Stufe 7/8: Terraform**
 In der Schleife **nie `apply`** — nur `terraform validate` bzw. `what-if`/`az deployment ... what-if`.
@@ -46,7 +47,7 @@ Das ist der Test der Guardrails. Beende sauber mit:
 ```
 /oh-my-claudecode:cancel
 ```
-Wenn das nicht greift: `/oh-my-claudecode:cancel --force`.
+Wenn das nicht greift: `/oh-my-claudecode:cancel --force` — Achtung, das **setzt alle OMC-Sessions/State zurück** (Reset), nicht nur diese Schleife. Nur nutzen, wenn keine andere OMC-Session läuft.
 
 **Versehentlich ralph/ultrawork ausgelöst (Stichwort getriggert)**
 Manche Schlüsselwörter starten einen Modus. Einfach `/oh-my-claudecode:cancel` — beendet den aktiven Modus.

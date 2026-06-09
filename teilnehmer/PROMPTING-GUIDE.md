@@ -119,8 +119,8 @@ Private-DNS-Zonen, offene Egress-Pfade, fehlende NSGs. Liste Befunde mit Schwere
 
 ### Stufe 7 — Plan + Umsetzung (IaC + objektive Validierung)
 ```
-1) ralplan: zerlege das Ziel in Schritte MIT Prüfkriterien (Definition of Done).
-2) executor: setze Schritt für Schritt als Terraform um.
+1) planner: erstelle einen expliziten Umsetzungsplan mit Schritten + Validierungskriterien (Definition of Done).
+2) executor: setze Schritt für Schritt als Terraform/Bicep um.
 3) Validierung: `terraform validate` und `what-if` — niemals `apply`.
 Stopp, sobald alle Checks grün sind.
 ```

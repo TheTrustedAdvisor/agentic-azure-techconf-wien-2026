@@ -4,10 +4,10 @@
 > [`../AUSGANGSLAGE.md`](../AUSGANGSLAGE.md) (Helvetia MedTech, nur Requirements + Parametrisierung).
 
 ## Voraussetzungen
-- **Claude Code** installiert (`claude --version`)
-- **uv** (`pip install uv`) — für die optionalen Python-Demos nicht nötig, schadet aber nicht
+- **Claude Code** installiert (`claude --version`) — Installation (macOS/Linux/WSL) siehe [RESSOURCEN.md](RESSOURCEN.md) → Claude Code
 - ein **Anthropic-Login** (für `claude`)
-- *optional, nur Stufe 7–8 gegen echtes Azure:* Azure-Subscription + `az login`
+- **für Stufen 5–8:** das **oh-my-claudecode (OMC)**-Plugin im *normalen* `~/.claude` installiert (liefert die OMC-Agents) — im Workshop vorinstalliert; beim Selbstbau siehe [RESSOURCEN.md](RESSOURCEN.md)
+- *optional, nur Stufe 7–8 gegen echtes Azure:* Azure-Subscription + `az login` (nur für `what-if` nötig; `terraform validate` läuft offline)
 
 ### Windows? → WSL2 verwenden (empfohlen)
 Das Lab nutzt Bash-Skripte (`setup.sh`, `run.sh`). Unter Windows läuft das am saubersten in **WSL2**
@@ -17,6 +17,7 @@ Das Lab nutzt Bash-Skripte (`setup.sh`, `run.sh`). Unter Windows läuft das am s
 # 1) In PowerShell ALS ADMINISTRATOR, danach Neustart:
 wsl --install            # installiert WSL2 + Ubuntu
 ```
+Danach den **Rechner neu starten** — beim ersten Start öffnet sich Ubuntu automatisch und legt den Linux-User an.
 ```bash
 # 2) Ubuntu starten (Startmenü → "Ubuntu"), Linux-User anlegen, dann:
 sudo apt update && sudo apt install -y git
@@ -49,12 +50,13 @@ cd agentic-azure-techconf-wien-2026
 | **7 Plan + Umsetzung** | `07-plan-umsetzung` | `planner → executor`, dann `terraform validate` | **IaC + objektive Validierung** |
 | **8 ralplan + ralph** | `08-ralplan-ralph` | `/oh-my-claudecode:ralplan …` → `ralph` | beschränkte Schleife konvergiert bis **„grün"**, dann `cancel` |
 
-> **Ab Stufe 5** braucht `run.sh` das **normale** Claude-Config (oh-my-claudecode-Plugin aktiv) — das macht das Skript automatisch.
+> **Ab Stufe 5** nutzt `run.sh` dein **normales** Claude-Config (kein Isolations-Override), damit die **OMC-Agents** verfügbar sind. `run.sh` installiert nichts — es setzt nur kein `CLAUDE_CONFIG_DIR`. **Voraussetzung:** oh-my-claudecode ist in `~/.claude` installiert (siehe Voraussetzungen).
 
 ## Tipps & Stolpersteine
 - **Stufe 2:** beim ersten Start fragt Claude, ob dem Projekt-MCP `microsoft-learn` vertraut wird → bestätigen.
 - **Stufe 8:** immer mit `/oh-my-claudecode:cancel` sauber beenden.
 - **In der Schleife nie `apply`** — nur `validate`/`what-if`. Autonomie braucht Grenzen.
+- **Kosten:** Stufen 5–8 (Multi-Agent, ralph-Schleifen) verbrauchen spürbar API-Tokens — bei knappem Budget genügt eine Iteration.
 - **Reset:** lösche `.claude-demo/` und führe `./setup.sh` erneut aus.
 - Jede Stufe ist eigenständig lauffähig — du musst nicht alle der Reihe nach machen.
 

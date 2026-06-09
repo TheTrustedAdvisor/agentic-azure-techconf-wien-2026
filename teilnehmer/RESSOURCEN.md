@@ -27,11 +27,13 @@
   https://learn.microsoft.com/training/support/mcp
   *Der MCP-Server, der echte, aktuelle MS-Doku liefert statt Trainingswissen.*
 
-## Claude Code (das Werkzeug im Lab)
+## Claude Code & OMC (das Werkzeug im Lab)
 
-- **Claude Code — Doku**
+- **Claude Code — Doku & Installation**
   https://docs.anthropic.com/en/docs/claude-code/overview
-  *CLI, Konfiguration, MCP-Server, eigene Agents/Skills — die Basis für Stufen 1–8.*
+  *CLI, Installation (macOS/Linux/WSL), Konfiguration, MCP-Server, eigene Agents/Skills — die Basis für Stufen 1–8.*
+- **oh-my-claudecode (OMC)** — die Agent-Sammlung für **Stufen 5–8**
+  *Im Workshop vorinstalliert. Beim Selbstbau ins normale `~/.claude` installieren (oh-my-claudecode-Projektseite).*
 
 ## Azure Networking (die gebaute Architektur)
 
