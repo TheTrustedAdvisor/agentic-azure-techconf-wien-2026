@@ -17,6 +17,19 @@ Techconference Wien 2026 · Workshop · Level 200–300
 
 ---
 
+# Wer bin ich
+
+**Matthias Falland** — Microsoft **MVP Data Platform** (seit 2018) · MCT seit 2009
+
+- **20 Jahre** Microsoft Data Platform: SQL Server 2005 → **Microsoft Fabric** 2025
+- **20+ Enterprise-Implementierungen** — Architektur-Patterns aus der Praxis
+- Microsoft **Fabric Influencers Spotlight** (2025) · **FABCON 2026** Speaker
+- **Fabric Friday** (YouTube @TheTrustedAdvisor) · copilot-cockpit.com
+
+> Speaker: 60 Sekunden. Glaubwürdigkeit für DIESEN Talk: Architektur-Patterns aus 20+ Implementierungen — und ich fahre agentische Methoden (ralplan/ralph) selbst produktiv. Kein Theoretiker.
+
+---
+
 # Der rote Faden
 
 > Die meisten Architektur-Fragen sind auf **Stufe 2–3** beantwortet.
@@ -27,6 +40,23 @@ Techconference Wien 2026 · Workshop · Level 200–300
 - und ehrlich: **wann sogar gar kein Agent** die beste Antwort ist
 
 > Speaker: Das ist der Vertrag mit dem Publikum. Am Ende haben sie einen Entscheidungsbaum, kein Hype-Gefühl.
+
+---
+
+# Mitmachen — Repo & Setup
+
+![QR-Code zum Repo](qr-repo.png)
+
+**github.com/TheTrustedAdvisor/agentic-azure-techconf-wien-2026**
+
+```bash
+git clone https://github.com/TheTrustedAdvisor/agentic-azure-techconf-wien-2026
+cd agentic-azure-techconf-wien-2026
+./setup.sh                 # einmal: isoliertes Config + Login
+cd 01-chat && ./run.sh     # los geht's
+```
+
+> Speaker: JETZT scannen und klonen — das Setup läuft im Hintergrund, während wir die Grundlagen machen. Repo ist öffentlich, alles zum Mitnehmen und Selber-Bauen. QR-Bild: `presentation/qr-repo.png`.
 
 ---
 
@@ -137,6 +167,18 @@ sequenceDiagram
 
 ---
 
+# Plan vs. Umsetzung — ralplan denkt, ralph handelt
+
+![Plan vs. Umsetzung](infographics/08-plan-umsetzung.png)
+
+- **ralplan (Plan):** das Ziel in **Schritte + Definition of Done** zerlegen — *bevor* gehandelt wird
+- **ralph (Umsetzung):** beschränkte Schleife — jede Runde **handeln → objektiv prüfen** (`validate`, nie `apply`)
+- erst denken, dann tun — und jede Runde **messen, nicht raten**
+
+> Speaker: Die Reife-Stufe von Autonomie. Planen ist billiger als blindes Tun; die Schleife prüft sich jede Runde selbst gegen die Definition of Done.
+
+---
+
 # Verifizierung — grün/rot statt „sieht gut aus"
 
 ```mermaid
@@ -163,7 +205,7 @@ flowchart LR
 
 # Teil B — Acht Methoden an EINER Aufgabe
 
-![Die Methoden-Leiter](infographics/08-methoden-leiter.png)
+![Die Methoden-Leiter](infographics/09-methoden-leiter.png)
 
 - keine Rangliste, keine Pipeline — **dieselbe Aufgabe, reifere Methode**
 - Anker: aus `AUSGANGSLAGE.md` (Helvetia MedTech) die Netzwerk-Architektur entwickeln
@@ -192,7 +234,7 @@ flowchart LR
 
 # Teil C — Das gebaute Ergebnis
 
-![Azure-Zielarchitektur](infographics/09-azure-zielarchitektur.png)
+![Azure-Zielarchitektur](infographics/10-azure-zielarchitektur.png)
 
 - Hub-Spoke (WEU primär, NEU für DR), zentrale Konnektivität, strikt private PaaS
 - AKS / APIM / **Microsoft Fabric Capacity**, kontrollierter Ingress/Egress
@@ -204,7 +246,7 @@ flowchart LR
 
 # Zero-Trust & Private Connectivity
 
-![Zero-Trust & Private Connectivity](infographics/10-zero-trust-private.png)
+![Zero-Trust & Private Connectivity](infographics/11-zero-trust-private.png)
 
 - PaaS nur über **Private Endpoints**, Auflösung über **Private DNS**
 - Egress kontrolliert über Azure Firewall

@@ -1,57 +1,93 @@
 # Mermaid-Patterns (technisch + logisch)
 
-> Technische Präzision zu den Infografiken. Jeder Block einzeln nach mermaid.live → SVG/PNG,
-> oder inline im Präsentations-Markdown. Validiert mit `mmdc`.
+> Technische Präzision zu den Infografiken — Mechanik, nicht Offensichtliches. Jeder Block einzeln
+> nach mermaid.live → SVG/PNG (oder gerenderte PNGs in `images/`). Validiert mit `mmdc`.
 
-## m-agent-loop — Der Agent-Loop (think → act → observe)
+## m-agent-loop — Loop mit Selbstkorrektur (das Nicht-Offensichtliche)
 
 ```mermaid
 sequenceDiagram
-    participant App as Aufruf
     participant Host as Host (Agent-Loop)
     participant LLM as Modell
     participant Tool as Werkzeug
-    App->>Host: Aufgabe
+    Host->>LLM: System + Werkzeuge + Verlauf
     loop bis stop_reason = end_turn
-        Host->>LLM: Verlauf + Werkzeuge
-        LLM-->>Host: stop_reason=tool_use, tool_use(Argumente)
-        Host->>Tool: Host fuehrt aus (Trust-Boundary)
-        Tool-->>Host: Ergebnis (tool_result)
+        LLM-->>Host: stop_reason=tool_use · tool_use(name, args)
+        alt Aufruf gueltig
+            Host->>Tool: ausfuehren (Host, nicht das Modell)
+            Tool-->>Host: tool_result (Daten)
+        else Fehler
+            Host-->>LLM: tool_result · is_error=true
+            Note over Host,LLM: Fehler ist Eingabe, kein Absturz → Modell korrigiert SQL/Args selbst
+        end
     end
-    LLM-->>Host: stop_reason=end_turn, finale Antwort
-    Host-->>App: Ergebnis
+    LLM-->>Host: stop_reason=end_turn · finale Antwort
 ```
 
-> Das Modell führt nichts selbst aus — es *bittet*, der Host *handelt*. Limit verhindert Endlosschleifen.
+> Pointe: Fehler werden in den Loop *zurückgegeben* — Resilienz by design. Das Modell bittet, der Host handelt.
 
-## m-mcp-architektur — MCP: ein Standard, viele Quellen
+## m-mcp-architektur — MCP ist ein typisiertes Protokoll, kein Kabel
 
 ```mermaid
 flowchart LR
-    HOST["Host / KI-Client<br/>(z. B. Claude)"] -->|"MCP"| S1["MCP-Server<br/>Microsoft Learn"]
-    HOST -->|"MCP"| S2["MCP-Server<br/>Datenbank"]
-    HOST -->|"MCP"| S3["MCP-Server<br/>Dateisystem"]
-    S1 --> Q1[("Doku")]
-    S2 --> Q2[("DB")]
-    S3 --> Q3[("Dateien")]
-    HOST -. "Host gibt jeden Server einzeln frei" .-> G["Trust-Boundary"]
+    subgraph HOST["Host (Claude) — setzt Trust-Boundary + Freigabe durch"]
+        CL["MCP-Client"]
+    end
+    subgraph SRV["MCP-Server (lokal oder remote)"]
+        T["Tools<br/>(Aktionen)"]
+        R["Resources<br/>(Daten/Kontext)"]
+        PR["Prompts<br/>(Vorlagen)"]
+    end
+    CL <-->|"JSON-RPC: Fähigkeiten aushandeln"| SRV
+    CL -->|"Aufruf nur nach Freigabe"| T
+    R --> Q[("Quelle: Doku/DB/Files")]
     style HOST fill:#e8f0fe,stroke:#1c2832,color:#000
-    style G fill:#fdecea,stroke:#cc2229,color:#000
+    style SRV fill:#f3f4f6,stroke:#455a64,color:#000
+    style T fill:#fdecea,stroke:#cc2229,color:#000
 ```
 
-## m-multi-agent — Orchestrator + Rollen + Critic-Tor
+> Nicht „ein Stecker", sondern drei typisierte Primitive (Tools/Resources/Prompts) über JSON-RPC; der Host mediiert jeden Zugriff.
+
+## m-multi-agent — Dynamische Zerlegung + Verifier-Schleife
 
 ```mermaid
 flowchart TB
-    ORC["Orchestrator<br/>(Code, deterministisch)"] --> AN["Analyst"]
-    AN --> AR["Architekt"]
-    AR --> CR{"Critic<br/>freigegeben?"}
-    CR -->|"ja"| EX["Executor"]
-    CR -->|"nein"| AR
-    EX --> OUT["Artefakt"]
+    TASK["Komplexe Aufgabe"] --> ORC["Orchestrator (Code)<br/>zerlegt ZUR LAUFZEIT"]
+    ORC -->|"delegiert"| W1["Analyst<br/>frischer Kontext"]
+    ORC -->|"delegiert"| W2["Architekt<br/>frischer Kontext"]
+    ORC -->|"delegiert"| W3["Executor<br/>frischer Kontext"]
+    W1 --> SYN["Orchestrator: fuehrt zusammen"]
+    W2 --> SYN
+    W3 --> SYN
+    SYN --> VER{"Verifier (eigene Instanz)<br/>Kriterien erfuellt?"}
+    VER -->|"nein"| ORC
+    VER -->|"ja"| OUT["Artefakt"]
     style ORC fill:#ede7f6,stroke:#5e35b1,color:#000
-    style CR fill:#fff9c4,stroke:#f9a825,color:#000
+    style VER fill:#fff9c4,stroke:#f9a825,color:#000
 ```
+
+> Teilaufgaben stehen *nicht* vorab fest; jeder Worker hat ein frisches Kontextfenster; der Prüfer ist nicht der Autor.
+
+## m-plan-umsetzung — ralplan denkt, ralph handelt
+
+```mermaid
+flowchart LR
+    GOAL["Ziel"] --> PLAN["ralplan: Plan + Definition of Done<br/>(Schritte + objektive Checks)"]
+    PLAN --> LOOP
+    subgraph LOOP["ralph — beschraenkte Schleife"]
+        direction TB
+        ACT["handeln (Schritt umsetzen)"] --> VAL["validate (nie apply)"]
+        VAL --> GATE{"alles gruen?"}
+        GATE -->|"nein & Runde < max"| ACT
+    end
+    GATE -->|"ja"| DONE["fertig"]
+    LOOP -->|"Runde = max"| STOP["kontrollierter Stopp"]
+    style PLAN fill:#e0f7fa,stroke:#00838f,color:#000
+    style LOOP fill:#fff5f7,stroke:#c2185b,color:#000
+    style GATE fill:#e8f5e9,stroke:#388e3c,color:#000
+```
+
+> Planen (denken) und Umsetzen (handeln+prüfen) sind getrennte Phasen; jede Runde prüft objektiv, statt zu raten.
 
 ## m-eval-gate — Objektives Tor (grün/rot statt „sieht gut aus")
 
@@ -90,19 +126,23 @@ flowchart TD
     style O fill:#e3f2fd,stroke:#1565c0,color:#000
 ```
 
-## m-methoden-leiter — 8 Stufen mit Gewinn/Preis
+## m-methoden-leiter — Stufen mit zwei Achsen (Fähigkeit ↑, Determinismus ↓)
 
 ```mermaid
 flowchart LR
-    S1["1 Chat"] -->|"+Daten / +Latenz"| S2["2 MCP"]
+    S1["1 Chat"] -->|"+Daten"| S2["2 MCP"]
     S2 -->|"+Rolle / Tal"| S3["3 eigene Agents"]
     S3 -->|"+Schaerfe"| S4["4 LLM-Agents"]
     S4 -->|"single→multi"| S5["5 OMC-Agents"]
     S5 -->|"+Pruefung"| S6["6 Critics"]
     S6 -->|"+Validierung"| S7["7 Plan+IaC"]
-    S7 -->|"+Autonomie/−Determinismus"| S8["8 ralplan+ralph"]
+    S7 -->|"+Autonomie"| S8["8 ralplan+ralph"]
+    K["Kosten/Tokens →"] -. "steigen mit jeder Stufe" .-> S8
+    D["Determinismus →"] -. "sinkt ab Stufe 8" .-> S8
     style S1 fill:#e1f5ff,stroke:#0288d1,color:#000
     style S8 fill:#fce4ec,stroke:#c2185b,color:#000
+    style K fill:#fff3e0,stroke:#f57c00,color:#000
+    style D fill:#eceff1,stroke:#455a64,color:#000
 ```
 
 ## m-azure-hubspoke — Hub-Spoke WEU + DR-NEU
