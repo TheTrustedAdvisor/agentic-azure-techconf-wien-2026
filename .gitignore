@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.uv/
+*.egg-info/
+
+# Env / Secrets
+.env
+.env.local
+
+# Generierte Demo-Outputs
+**/out/
+docs/generated/
+
+# Frühere Demo-Iteration — lokal behalten, nicht im Repo
+archive/
+
+# Isoliertes Claude-Config der Demo (enthält Login/Secrets)
+.claude-demo/
+
+# Lokale SQLite-Demo-DB
+**/demo.db
+
+# Editor / OS
+.DS_Store
+.vscode/
+.idea/
+
+# Tooling-State
+.omc/
+
+# Infografik-Generator (lokal, nicht committen)
+.infographics-pipeline/
+*-noheader.png
+presentation/infographics/manifests/
