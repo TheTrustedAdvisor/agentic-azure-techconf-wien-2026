@@ -30,3 +30,8 @@ archive/
 
 # Tooling-State
 .omc/
+
+# Infografik-Generator (lokal, nicht committen)
+.infographics-pipeline/
+*-noheader.png
+presentation/infographics/manifests/
