@@ -40,6 +40,11 @@ cd agentic-azure-techconf-wien-2026
 ```
 Stufen 1–4 laufen plugin-frei isoliert; Stufen 5–8 nutzen das normale Config (OMC-Agents).
 
+## Mehr in diesem Ordner
+- [`PROMPTING-GUIDE.md`](PROMPTING-GUIDE.md) — Copy-Paste-Prompts je Stufe (wenn ein Prompt nicht zündet)
+- [`GLOSSAR.md`](GLOSSAR.md) — jeder Begriff in 2–3 Sätzen
+- [`RESSOURCEN.md`](RESSOURCEN.md) — kuratierte Links · [`TROUBLESHOOTING.md`](TROUBLESHOOTING.md) — wenn's klemmt
+
 ## Links
 - Repo: github.com/TheTrustedAdvisor/agentic-azure-techconf-wien-2026
 - Anthropic — *Building Effective Agents* (die Pattern-Grundlage)

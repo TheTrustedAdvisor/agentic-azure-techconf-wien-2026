@@ -39,5 +39,9 @@ cd agentic-azure-techconf-wien-2026
 - **Reset:** lösche `.claude-demo/` und führe `./setup.sh` erneut aus.
 - Jede Stufe ist eigenständig lauffähig — du musst nicht alle der Reihe nach machen.
 
+## Wenn ein Prompt nicht zündet
+Fertige Copy-Paste-Vorlagen je Stufe stehen im [`PROMPTING-GUIDE.md`](PROMPTING-GUIDE.md).
+Stolpersteine (Setup, MCP-Freigabe, ralph beenden) im [`TROUBLESHOOTING.md`](TROUBLESHOOTING.md).
+
 ## Die Leitfrage bei jeder Aufgabe
 **Welche Stufe verlangt diese Aufgabe wirklich?** Meistens reicht 2–3. Steig nur auf, wenn die Aufgabe offen, mehrstufig und prüfintensiv ist.
