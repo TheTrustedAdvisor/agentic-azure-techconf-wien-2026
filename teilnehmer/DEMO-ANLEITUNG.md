@@ -9,6 +9,25 @@
 - ein **Anthropic-Login** (für `claude`)
 - *optional, nur Stufe 7–8 gegen echtes Azure:* Azure-Subscription + `az login`
 
+### Windows? → WSL2 verwenden (empfohlen)
+Das Lab nutzt Bash-Skripte (`setup.sh`, `run.sh`). Unter Windows läuft das am saubersten in **WSL2**
+(Windows-Subsystem für Linux) — keine PowerShell-Portierung nötig, alles ist „wie auf Linux".
+
+```powershell
+# 1) In PowerShell ALS ADMINISTRATOR, danach Neustart:
+wsl --install            # installiert WSL2 + Ubuntu
+```
+```bash
+# 2) Ubuntu starten (Startmenü → "Ubuntu"), Linux-User anlegen, dann:
+sudo apt update && sudo apt install -y git
+# 3) Claude Code in WSL installieren (siehe RESSOURCEN.md → Claude Code)
+# 4) WICHTIG: ins Linux-Home klonen, NICHT nach /mnt/c/...
+cd ~
+```
+> **Warum im Linux-Home (`~`) und nicht unter `/mnt/c/`?** Im Windows-Dateisystem ist WSL deutlich
+> langsamer, und Skript-Rechte/Zeilenenden (CRLF) machen Ärger. Im Linux-Home läuft alles glatt.
+> Ab hier sind alle Befehle unten **identisch** zu macOS/Linux.
+
 ## Einmal: Setup
 ```bash
 git clone https://github.com/TheTrustedAdvisor/agentic-azure-techconf-wien-2026

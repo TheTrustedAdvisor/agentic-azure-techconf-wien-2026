@@ -66,6 +66,7 @@ GESTALTUNG (global)
 **Auf der Folie:**
 - **github.com/TheTrustedAdvisor/agentic-azure-techconf-wien-2026** — öffentlich, alles zum Mitnehmen
 - Jetzt scannen & klonen — das Setup läuft, während wir die Grundlagen machen.
+- **Windows:** vorher `wsl --install`, dann in WSL/Ubuntu arbeiten (Details im Repo).
 
 ```bash
 git clone https://github.com/TheTrustedAdvisor/agentic-azure-techconf-wien-2026

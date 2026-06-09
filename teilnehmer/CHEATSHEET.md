@@ -39,6 +39,7 @@ cd agentic-azure-techconf-wien-2026
 ./setup.sh            # einmal: isoliertes Config + Login
 ```
 Stufen 1–4 laufen plugin-frei isoliert; Stufen 5–8 nutzen das normale Config (OMC-Agents).
+> **Windows:** vorher WSL2 (`wsl --install`), dann alles *innerhalb* von Ubuntu/WSL und ins Linux-Home klonen. Details: [`DEMO-ANLEITUNG.md`](DEMO-ANLEITUNG.md).
 
 ## Mehr in diesem Ordner
 - [`PROMPTING-GUIDE.md`](PROMPTING-GUIDE.md) — Copy-Paste-Prompts je Stufe (wenn ein Prompt nicht zündet)

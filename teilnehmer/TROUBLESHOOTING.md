@@ -1,6 +1,6 @@
 # Troubleshooting — wenn's klemmt
 
-> Die wahrscheinlichsten Stolpersteine, nach Stelle sortiert. Erst hier schauen, dann fragen.
+> Die wahrscheinlichsten Stolpersteine, nach Stelle sortiert — meist bist du in zwei Minuten wieder unterwegs. Und wenn nicht: frag, dafür ist der Workshop da.
 
 ## Setup
 
@@ -50,6 +50,23 @@ Wenn das nicht greift: `/oh-my-claudecode:cancel --force`.
 
 **Versehentlich ralph/ultrawork ausgelöst (Stichwort getriggert)**
 Manche Schlüsselwörter starten einen Modus. Einfach `/oh-my-claudecode:cancel` — beendet den aktiven Modus.
+
+## Windows / WSL
+
+**`./setup.sh` läuft nicht unter Windows / PowerShell**
+Das Lab ist für Bash gemacht. Nutze **WSL2** und führe alles *innerhalb* von Ubuntu/WSL aus —
+Setup-Schritte in [`DEMO-ANLEITUNG.md`](DEMO-ANLEITUNG.md) → „Windows? → WSL2 verwenden".
+
+**Alles ist quälend langsam / `Permission denied` bei `./setup.sh`**
+Du arbeitest vermutlich unter `/mnt/c/...` (Windows-Dateisystem). Klone stattdessen ins
+**Linux-Home** (`cd ~` in WSL). Dort ist WSL schnell und die Skriptrechte stimmen.
+
+**`./setup.sh: bad interpreter: /bin/bash^M`**
+Windows-Zeilenenden (CRLF) im Skript. Im Linux-Home klonen löst das meist; sonst:
+`sed -i 's/\r$//' setup.sh` (oder `git config --global core.autocrlf input` vor dem Klonen).
+
+**`claude` in WSL nicht gefunden**
+Claude Code muss **innerhalb** von WSL installiert sein — eine Windows-Installation zählt in WSL nicht.
 
 ## Mermaid / Diagramme (falls du sie selbst renderst)
 
